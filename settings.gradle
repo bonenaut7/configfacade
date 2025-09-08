@@ -1,0 +1,11 @@
+rootProject.name = "configfacade"
+
+includeProject("core")
+includeProject("gson-adapter")
+includeProject("snakeyaml-adapter")
+includeProject("toml-adapter")
+
+def includeProject(String name) {
+    include(":$name")
+    project(":$name").projectDir = new File("src-$name/")
+}

@@ -1,0 +1,178 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+			url = "https://plugins.gradle.org/m2/";
+		}
+    }
+	dependencies {
+        classpath "org.jreleaser:jreleaser-gradle-plugin:1.20.0"
+	}
+}
+
+allprojects {
+	apply plugin: 'eclipse'
+	apply plugin: 'java-library'
+}
+
+project(":core") {
+	ext {
+		projectVersion = '0.1.0'
+		projectPomName = 'ConfigFacade'
+		projectDescription = 'Configuration facade, an abstraction layer for different configuration file formats.'
+	}
+}
+
+project(":gson-adapter") {
+	ext {
+		projectVersion = '1.0.0'
+		projectPomName = 'ConfigFacade gson adapter'
+		projectDescription = 'JSON format adapater for configfacade-core.'
+	}
+
+	dependencies {
+		implementation project(":core")
+		implementation "com.google.code.gson:gson:2.10.1"
+	}
+}
+
+project(":snakeyaml-adapter") {
+	ext {
+		projectVersion = '1.0.0'
+		projectPomName = 'ConfigFacade snakeyaml adapter'
+		projectDescription = 'YAML format adapater for configfacade-core.'
+	}
+
+	dependencies {
+		implementation project(":core")
+		implementation "org.yaml:snakeyaml:2.5"
+	}
+}
+
+project(":toml-adapter") {
+	ext {
+		projectVersion = '1.0.0'
+		projectPomName = 'ConfigFacade toml adapter'
+		projectDescription = 'TOML format adapater for configfacade-core.'
+	}
+
+	dependencies {
+		implementation project(":core")
+	}
+}
+
+subprojects {
+	apply plugin: 'maven-publish'
+	apply plugin: 'org.jreleaser'
+
+	group = 'by.bonenaut7.configfacade'
+
+	ext {
+		libraryName = "configfacade"
+
+		setIDENames = { -> 
+            if (project != rootProject) {
+                eclipse.project.name = libraryName + '-' + project.name;
+            }
+        }
+	}
+
+	java {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+    	targetCompatibility = JavaVersion.VERSION_1_8
+
+		withSourcesJar()
+		withJavadocJar()
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	publishing {
+		publications {
+			maven(MavenPublication) {
+				from components.java
+
+				artifactId = project.name
+				groupId = "${group}"
+				version = "${projectVersion}"
+
+				pom {
+					name = "${projectPomName}"
+					description = "${projectDescription}"
+					url = 'https://github.com/bonenaut7/uebus/'
+					inceptionYear = '2025'
+
+					licenses {
+						license {
+							name = 'MIT'
+							url = "https://opensource.org/licenses/MIT"
+						}
+					}
+
+					developers {
+						developer {
+							id = 'bonenaut7'
+						}
+					}
+
+					scm {
+						url = "https://github.com/bonenaut7/configfacade/"
+						connection = "scm:git:git@github.com:bonenaut7/configfacade.git"
+						developerConnection = "scm:git:git@github.com:bonenaut7/configfacade.git"
+					}
+				}
+			}
+		}
+
+		repositories {
+			maven {
+				url = layout.buildDirectory.dir('staging-deploy')
+			}
+		}
+	}
+
+	jreleaser {
+		project {
+			snapshot {
+				pattern = '.*-SNAPSHOT'
+				fullChangelog = true
+			}
+		}
+
+		signing {
+			active = 'ALWAYS'
+			armored = true
+			verify = true
+			mode = 'FILE'
+		}
+
+		release {
+			github {
+				skipRelease = true
+				skipTag = true
+			}
+		}
+
+		deploy {
+			maven {
+				mavenCentral {
+					sonatype {
+						active = 'ALWAYS'
+						url = "https://central.sonatype.com/api/v1/publisher"
+						stagingRepository(layout.buildDirectory.dir('staging-deploy').get().toString())
+						sign = true
+						checksums = true
+						sourceJar = true
+						javadocJar = true
+						retryDelay = 60
+					}
+				}
+			}
+		}
+	}
+
+	setIDENames()
+}
