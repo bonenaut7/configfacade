@@ -23,6 +23,10 @@ public abstract class ConfigElement {
 		return null;
 	}
 	
+	public ConfigPrimitive asPrimitive() {
+		return null;
+	}
+	
 	public ConfigString asString() {
 		return null;
 	}

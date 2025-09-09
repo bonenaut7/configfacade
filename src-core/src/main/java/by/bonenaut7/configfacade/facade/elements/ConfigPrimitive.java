@@ -2,6 +2,11 @@ package by.bonenaut7.configfacade.facade.elements;
 
 public abstract class ConfigPrimitive extends ConfigElement {
 	
+	@Override
+	public ConfigPrimitive asPrimitive() {
+		return this;
+	}
+	
 	public boolean isLiteral() {
 		return false;
 	}
