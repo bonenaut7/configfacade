@@ -13,6 +13,11 @@ public final class ConfigString extends ConfigPrimitive {
 		this.isCharacter = true;
 		this.object = character;
 	}
+	
+	@Override
+	public ConfigString asString() {
+		return this;
+	}
 
 	@Override
 	public boolean isLiteral() {

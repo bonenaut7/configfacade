@@ -1,11 +1,8 @@
 package by.bonenaut7.configfacade.facade.elements;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -27,6 +24,11 @@ public final class ConfigCompound extends ConfigElement implements Iterable<Map.
 				}
 			}
 		}
+	}
+	
+	@Override
+	public ConfigCompound asCompound() {
+		return this;
 	}
 	
 	public boolean has(String key) {

@@ -7,8 +7,9 @@ import java.util.List;
 public final class ConfigArray extends ConfigElement implements Iterable<ConfigElement> {
 	private List<ConfigElement> list = new ArrayList<>();
 	
-	public int size() {
-		return this.list.size();
+	@Override
+	public ConfigArray asArray() {
+		return this;
 	}
 	
 	public boolean containsArrays() {
@@ -110,6 +111,10 @@ public final class ConfigArray extends ConfigElement implements Iterable<ConfigE
 
 	public ConfigElement removeLast() {
 		return this.list.remove(size() - 1);
+	}
+	
+	public int size() {
+		return this.list.size();
 	}
 	
 	@Override

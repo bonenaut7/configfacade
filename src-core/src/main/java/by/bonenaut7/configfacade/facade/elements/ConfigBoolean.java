@@ -8,6 +8,11 @@ public final class ConfigBoolean extends ConfigPrimitive {
 	}
 	
 	@Override
+	public ConfigBoolean asBoolean() {
+		return this;
+	}
+	
+	@Override
 	public boolean isBoolean() {
 		return true;
 	}

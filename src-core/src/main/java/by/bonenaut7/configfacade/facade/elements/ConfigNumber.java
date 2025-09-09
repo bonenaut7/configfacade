@@ -6,6 +6,11 @@ public final class ConfigNumber extends ConfigPrimitive {
 	public ConfigNumber(Number number) {
 		this.value = number;
 	}
+	
+	@Override
+	public ConfigNumber asNumber() {
+		return this;
+	}
 
 	@Override
 	public boolean isNumber() {

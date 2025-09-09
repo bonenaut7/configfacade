@@ -14,6 +14,26 @@ public abstract class ConfigElement {
 	
 	ConfigElement() {
 	}
+	
+	public ConfigCompound asCompound() {
+		return null;
+	}
+	
+	public ConfigArray asArray() {
+		return null;
+	}
+	
+	public ConfigString asString() {
+		return null;
+	}
+	
+	public ConfigNumber asNumber() {
+		return null;
+	}
+	
+	public ConfigBoolean asBoolean() {
+		return null;
+	}
 
 	public boolean hasComment() {
 		return this.comment != null;

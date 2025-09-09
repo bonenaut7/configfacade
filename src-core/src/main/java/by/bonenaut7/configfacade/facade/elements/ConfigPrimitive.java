@@ -2,15 +2,15 @@ package by.bonenaut7.configfacade.facade.elements;
 
 public abstract class ConfigPrimitive extends ConfigElement {
 	
-	public boolean isBoolean() {
+	public boolean isLiteral() {
 		return false;
 	}
-
+	
 	public boolean isNumber() {
 		return false;
 	}
-
-	public boolean isLiteral() {
+	
+	public boolean isBoolean() {
 		return false;
 	}
 	
