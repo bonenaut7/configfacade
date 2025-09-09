@@ -23,59 +23,79 @@ public abstract class ConfigPrimitive extends ConfigElement {
 		return getBoolean(false);
 	}
 	
-	public abstract boolean getBoolean(boolean fallback);
+	public boolean getBoolean(boolean fallback) {
+		return fallback;
+	}
 
 	public Number getNumber() {
 		return getNumber(NUM_ZERO);
 	}
 
-	public abstract Number getNumber(Number fallback);
+	public Number getNumber(Number fallback) {
+		return fallback;
+	}
 
 	public byte getByte() {
 		return getByte(BYTE_ZERO);
 	}
 	
-	public abstract byte getByte(byte fallback);
+	public byte getByte(byte fallback) {
+		return fallback;
+	}
 	
 	public short getShort() {
 		return getShort(SHORT_ZERO);
 	}
 
-	public abstract short getShort(short fallback);
+	public short getShort(short fallback) {
+		return fallback;
+	}
 
 	public int getInteger() {
 		return getInteger(INT_ZERO);
 	}
 	
-	public abstract int getInteger(int fallback);
+	public int getInteger(int fallback) {
+		return fallback;
+	}
 	
 	public long getLong() {
 		return getLong(LONG_ZERO);
 	}
 
-	public abstract long getLong(long fallback);
+	public long getLong(long fallback) {
+		return fallback;
+	}
 
 	public float getFloat() {
 		return getFloat(FLOAT_ZERO);
 	}
 	
-	public abstract float getFloat(float fallback);
+	public float getFloat(float fallback) {
+		return fallback;
+	}
 
 	public double getDouble() {
 		return getDouble(DOUBLE_ZERO);
 	}
 	
-	public abstract double getDouble(double fallback);
+	public double getDouble(double fallback) {
+		return fallback;
+	}
 
 	public char getChar() {
 		return getChar(CHAR_ZERO);
 	}
 	
-	public abstract char getChar(char fallback);
+	public char getChar(char fallback) {
+		return fallback;
+	}
 	
 	public String getString() {
 		return getString(null);
 	}
 	
-	public abstract String getString(String fallback);
+	public String getString(String fallback) {
+		return fallback;
+	}
 }

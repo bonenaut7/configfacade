@@ -18,11 +18,6 @@ public final class ConfigNumber extends ConfigPrimitive {
 	}
 
 	@Override
-	public boolean getBoolean(boolean fallback) {
-		return fallback;
-	}
-
-	@Override
 	public Number getNumber(Number fallback) {
 		return this.value;
 	}
@@ -55,16 +50,6 @@ public final class ConfigNumber extends ConfigPrimitive {
 	@Override
 	public double getDouble(double fallback) {
 		return this.value.doubleValue();
-	}
-
-	@Override
-	public char getChar(char fallback) {
-		return fallback;
-	}
-	
-	@Override
-	public String getString(String fallback) {
-		return fallback;
 	}
 	
 	@Override
