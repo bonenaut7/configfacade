@@ -18,7 +18,7 @@ allprojects {
 
 project(":core") {
 	ext {
-		projectVersion = '0.1.0'
+		projectVersion = '0.1.1'
 		projectPomName = 'ConfigFacade'
 		projectDescription = 'Configuration facade, an abstraction layer for different configuration file formats.'
 	}
@@ -102,7 +102,7 @@ subprojects {
 				pom {
 					name = "${projectPomName}"
 					description = "${projectDescription}"
-					url = 'https://github.com/bonenaut7/uebus/'
+					url = 'https://github.com/bonenaut7/configfacade/'
 					inceptionYear = '2025'
 
 					licenses {
@@ -135,7 +135,11 @@ subprojects {
 	}
 
 	jreleaser {
+		gitRootSearch = true
+
 		project {
+			version = "${projectVersion}"
+
 			snapshot {
 				pattern = '.*-SNAPSHOT'
 				fullChangelog = true
